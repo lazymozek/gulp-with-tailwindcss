@@ -1,0 +1,57 @@
+{
+  "name": "gulp-with-tailwind",
+  "version": "1.0.0",
+  "description": "Gulp with Tailwind CSS Utility",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "init": "gulp tailwindInit",
+    "dev": "gulp",
+    "build": "gulp build"
+  },
+  "paths": {
+    "root": "./",
+    "config": {
+      "tailwindjs": "./tailwind.js"
+    },
+    "src": {
+      "base": "./src",
+      "css": "./src/css",
+      "js": "./src/js",
+      "sass": "./src/sass",
+      "img": "./src/img"
+    },
+    "dist": {
+      "base": "./dist",
+      "css": "./dist/css",
+      "js": "./dist/js",
+      "img": "./dist/img"
+    },
+    "build": {
+      "base": "./build"
+    }
+  },
+  "keywords": [
+    "gulp",
+    "tailwind",
+    "tailwindcss"
+  ],
+  "author": "Manjunath G",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^9.3.1",
+    "browser-sync": "^2.26.3",
+    "create-file": "^1.0.1",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-minifier": "^1.2.2",
+    "gulp-postcss": "^8.0.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-webp": "^3.0.0",
+    "log-symbols": "^2.2.0",
+    "tailwindcss": "^0.7.0"
+  }
+}
