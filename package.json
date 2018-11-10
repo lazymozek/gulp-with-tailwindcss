@@ -48,6 +48,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-minifier": "^1.2.2",
     "gulp-postcss": "^8.0.0",
+    "gulp-purgecss": "^1.1.1",
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-webp": "^3.0.0",

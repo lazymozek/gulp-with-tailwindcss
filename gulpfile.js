@@ -23,7 +23,8 @@ const exec = require('child_process').exec; //For executing commands
 const sass = require('gulp-sass'); //For Compiling SASS files
 const concat = require('gulp-concat'); //For Concatinating js,css files
 const postcss = require('gulp-postcss'); //For Compiling tailwind utilities with tailwind config
-//Note : Webp still not supported in majpr browsers including forefox
+const purgecss = require('gulp-purgecss'); //To remove unused CSS 
+//Note : Webp still not supported in major browsers including forefox
 //const webp = require('gulp-webp'); //For converting images to WebP format
 //const replace = require('gulp-replace'); //For Replacing img formats to webp in html
 const del = require('del'); //For Cleaning build/dist for fresh export
@@ -78,6 +79,11 @@ task('styles', ()=> {
             tailwindcss(paths.config.tailwindjs),
             require('autoprefixer'),
         ]))
+        .pipe(
+            purgecss({
+              content: [paths.src.base+'/*.html']
+            })
+        )
         .pipe(dest(paths.src.css));
 });
 
