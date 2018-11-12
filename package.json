@@ -9,27 +9,30 @@
     "dev": "gulp",
     "build": "gulp build"
   },
-  "paths": {
-    "root": "./",
+  "options": {
     "config": {
       "tailwindjs": "./tailwind.js"
     },
-    "src": {
-      "base": "./src",
-      "css": "./src/css",
-      "js": "./src/js",
-      "sass": "./src/sass",
-      "img": "./src/img"
+    "paths": {
+      "root": "./",
+      "src": {
+        "base": "./src",
+        "css": "./src/css",
+        "js": "./src/js",
+        "sass": "./src/sass",
+        "img": "./src/img"
+      },
+      "dist": {
+        "base": "./dist",
+        "css": "./dist/css",
+        "js": "./dist/js",
+        "img": "./dist/img"
+      },
+      "build": {
+        "base": "./build"
+      }
     },
-    "dist": {
-      "base": "./dist",
-      "css": "./dist/css",
-      "js": "./dist/js",
-      "img": "./dist/img"
-    },
-    "build": {
-      "base": "./build"
-    }
+    "fontweights": "400,500,600,700,900"
   },
   "keywords": [
     "gulp",

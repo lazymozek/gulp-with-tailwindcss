@@ -15,8 +15,8 @@
     4. npm run build //To generate minifed files for live server
 */
 
-const { src, dest, task, watch, series,parallel } = require('gulp');
-const paths = require("./package.json").paths; //Files/Folders path defined in package.json
+const { src, dest, task, watch, series, parallel, start } = require('gulp');
+const options = require("./package.json").options; //Options : paths and other options from package.json
 const browserSync = require('browser-sync').create();
 const createFile = require('create-file'); //For creating tailwind utilities styles by command
 const exec = require('child_process').exec; //For executing commands
@@ -24,7 +24,7 @@ const sass = require('gulp-sass'); //For Compiling SASS files
 const concat = require('gulp-concat'); //For Concatinating js,css files
 const postcss = require('gulp-postcss'); //For Compiling tailwind utilities with tailwind config
 const purgecss = require('gulp-purgecss'); //To remove unused CSS 
-//Note : Webp still not supported in major browsers including forefox
+//Note : Webp still not supported in majpr browsers including forefox
 //const webp = require('gulp-webp'); //For converting images to WebP format
 //const replace = require('gulp-replace'); //For Replacing img formats to webp in html
 const del = require('del'); //For Cleaning build/dist for fresh export
@@ -38,16 +38,16 @@ function tailwindInit(done){
         if(err)
             console.log("\n\t" + logSymbols.error,"Oops! Tailwind.js already exists.\n");
         else
-            console.log("\n\t" + logSymbols.success,"Tailwind.js @ "+ paths.config.tailwindjs+" and Tailwind SCSS @ "+ paths.src.sass+", created Successfully!\n");
+            console.log("\n\t" + logSymbols.success,"Tailwind.js @ "+ options.config.tailwindjs+" and Tailwind SCSS @ "+ options.paths.src.sass+", created Successfully!\n");
     });
-    createFile(paths.src.sass + '/tailwind.scss', '@tailwind preflight;\n@tailwind components;\n@tailwind utilities;',(cb)=>{ done(cb); });
+    createFile(options.paths.src.sass + '/tailwind.scss', '@tailwind preflight;\n@tailwind components;\n@tailwind utilities;',(cb)=>{ done(cb); });
 }
 
 //Load Previews on Browser on dev
 task('livepreview', (done) => {
     browserSync.init({
         server: {
-            baseDir: paths.dist.base
+            baseDir: options.paths.dist.base
         },
         port: 1234
     });
@@ -62,58 +62,88 @@ function previewReload(done){
 }
 
 task('html', () => {
-    return src(paths.src.base+'/*.html')
+    return src(options.paths.src.base+'/*.html')
            //Note : Webp still not supported in majpr browsers including forefox
            //.pipe(replace('.jpg', '.webp'))
            //.pipe(replace('.png', '.webp'))
            //.pipe(replace('.jpeg','.webp'))
-           .pipe(dest(paths.dist.base));
+           .pipe(dest(options.paths.dist.base));
 }); 
+
+//Import google fonts from fonts list in config file
+task('googleFonts' , (done) => {
+    const fonts = require('./tailwind');
+    var fontsList = Object.entries(fonts.fonts).map(([fontClass, fontName]) => ({fontClass,fontName}));
+    const defaultFontsList = ['sans','serif','mono'];
+    fontsList = fontsList.filter( ( el ) => !defaultFontsList.includes( el.fontClass ) );
+    if(fontsList.length > 0){
+        var fontsLink = "@import url(http://fonts.googleapis.com/css?family=";
+        var fontsImport =  "";
+        fontsList.filter((el) => {
+            fontsImport += el.fontName[0];
+            if(options.fontweights !== ""){
+                fontsImport += ":"+ options.fontweights;
+            }
+            fontsImport += "|";
+        });
+        fontsLink += fontsImport.slice(0, -1).split(' ').join('+')+');';
+        //console.log(fontsLink);
+        del([options.paths.src.css + '/fonts.css']).then( () => {
+            createFile(options.paths.src.css + '/fonts.css', fontsLink ,(cb)=>{ done(cb); });
+            done();
+        });
+    } else{
+        del([options.paths.src.css + '/fonts.css']).then(()=>{
+            done();
+        });
+    }
+
+});
 
 //Compiling scss to css
 task('styles', ()=> {
     var tailwindcss = require('tailwindcss'); 
-    return src(paths.src.sass + '/*.scss')
+    return src(options.paths.src.sass + '/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss([
-            tailwindcss(paths.config.tailwindjs),
+            tailwindcss(options.config.tailwindjs),
             require('autoprefixer'),
         ]))
         .pipe(
             purgecss({
-              content: [paths.src.base+'/*.html']
+              content: [options.paths.src.base+'/*.html']
             })
         )
-        .pipe(dest(paths.src.css));
+        .pipe(dest(options.paths.src.css));
 });
 
 //merging all css files to a single file
 task('style-output' ,()=> {
-    return src([paths.src.css + '/tailwind.css',paths.src.css + '/*.css'])
+    return src([options.paths.src.css + '/fonts.css',options.paths.src.css + '/tailwind.css',options.paths.src.css + '/**/*.css'],{allowEmpty:true})
            .pipe(concat({ path: 'css/style.css'}))
-           .pipe(dest(paths.dist.base));
+           .pipe(dest(options.paths.dist.base));
 });
 
 //merging all script files to a single file
 task('scripts' ,()=> {
-    return src([paths.src.js + '/libs/*.js',paths.src.js + '/*.js'])
+    return src([options.paths.src.js + '/libs/**/*.js',options.paths.src.js + '/**/*.js'])
            .pipe(concat({ path: 'js/scripts.js'}))
-           .pipe(dest(paths.dist.base));
+           .pipe(dest(options.paths.dist.base));
 });
 
 task('imgs', (done) =>{
-    src(paths.src.img + '/*')
+    src(options.paths.src.img + '/**/*')
     //Note : Webp still not supported in majpr browsers including forefox
     //.pipe(webp({ quality: 100 }))
-    .pipe(dest(paths.dist.img));
+    .pipe(dest(options.paths.dist.img));
     done();
 });
 
 task('exportImgs', (done) =>{
-    src(paths.src.img + '/*')
+    src(options.paths.src.img + '/**/*')
     //Note : Webp still not supported in majpr browsers including forefox
     //.pipe(webp({ quality: 100 }))
-    .pipe(dest(paths.build.base + '/img'));
+    .pipe(dest(options.paths.build.base + '/img'));
     done();
 });
 
@@ -121,19 +151,19 @@ task('exportImgs', (done) =>{
 task('watch-changes', (done) => {
     
     //Watch tailwind config file for changes and regenerate tailwind styles with modified values
-    watch(paths.config.tailwindjs,series('styles','style-output', previewReload));
+    watch(options.config.tailwindjs,series('googleFonts','styles','style-output', previewReload));
 
     //Watching HTML Files edits
-    watch(paths.src.base+'/*.html',series('html',previewReload));
+    watch(options.paths.src.base+'/**/*.html',series('html',previewReload));
 
     //Watching SASS Files edits
-    watch(paths.src.sass+'/*.scss',series('styles','style-output',previewReload));
+    watch(options.paths.src.sass+'/**/*.scss',series('googleFonts','styles','style-output',previewReload));
 
     //Watching JS Files edits
-    watch(paths.src.js+'/*.js',series('scripts',previewReload));
+    watch(options.paths.src.js+'/**/*.js',series('scripts',previewReload));
 
     //Watching Img Files edits
-    watch(paths.src.img+'/*',series('imgs',previewReload));
+    watch(options.paths.src.img+'/**/*',series('imgs',previewReload));
 
     console.log("\n\t" + logSymbols.info,"Watching for Changes made to files.\n");
 
@@ -156,7 +186,7 @@ task('exportLive', ()=> {
         var m = content.match(/\/\*![\s\S]*?\*\//img);
         return m && m.join('\n') + '\n' || '';
     }
-  })).pipe(dest(paths.build.base))
+  })).pipe(dest(options.paths.build.base))
 });
 
 //Cleaning dist folder for fresh start
@@ -172,7 +202,7 @@ task('clean:build', ()=> {
 });
 
 //series of tasks to run on dev command
-task('development', series('clean:dist','html','styles','style-output','scripts','imgs',(done)=>{
+task('development', series('clean:dist','html','googleFonts','styles','style-output','scripts','imgs',(done)=>{
     console.log("\n\t" + logSymbols.info,"npm run dev is complete. Files are located at ./dist\n");
     done();
 }));
