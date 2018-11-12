@@ -21,7 +21,6 @@ Gulp with TailwindCSS Starter Kit - A repo which makes your development easier w
  npm run build 
 ```
 
- 
 ## How to include Google Fonts to your project
 
 Please follow the this [tailwind documentation](https://tailwindcss.com/docs/fonts/#font-families) to include fonts to tailwind config file and rest is done by gulp task :) 
@@ -30,7 +29,6 @@ Please follow the this [tailwind documentation](https://tailwindcss.com/docs/fon
 
  
 # Options
-
  
 ## Font Weights
 To change the font weights to be included in additional google fonts included in tailwind config change from below code
@@ -41,7 +39,6 @@ To change the font weights to be included in additional google fonts included in
     "fontweights": "400,500,600,700,900"
 }
 ```
-
  
 ## Paths
 To change the path of files and destination/build folder, edit options in **package.json** file
@@ -70,6 +67,7 @@ To change the path of files and destination/build folder, edit options in **pack
     ...
 }
 ```
+
 
 # Changelogs
 
