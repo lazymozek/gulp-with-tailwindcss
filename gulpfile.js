@@ -15,7 +15,7 @@
     4. npm run build //To generate minifed files for live server
 */
 
-const { src, dest, task, watch, series, parallel, start } = require('gulp');
+const { src, dest, task, watch, series, parallel } = require('gulp');
 const options = require("./package.json").options; //Options : paths and other options from package.json
 const browserSync = require('browser-sync').create();
 const createFile = require('create-file'); //For creating tailwind utilities styles by command
@@ -154,7 +154,7 @@ task('watch-changes', (done) => {
     watch(options.config.tailwindjs,series('googleFonts','styles','style-output', previewReload));
 
     //Watching HTML Files edits
-    watch(options.paths.src.base+'/**/*.html',series('html',previewReload));
+    watch(options.paths.src.base+'/**/*.html',series('googleFonts','styles','style-output','html',previewReload));
 
     //Watching SASS Files edits
     watch(options.paths.src.sass+'/**/*.scss',series('googleFonts','styles','style-output',previewReload));
