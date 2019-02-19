@@ -1,2 +1,1 @@
-//libraries
-console.log("Hello from libraries file.");
+//libraries like jquery etc

@@ -8,39 +8,32 @@
 
     1. npm install //To install all dev dependencies of package
 
-    2. npm run init // To generate tailwind config file with tailwind utilites styles
+    2. npm run dev //To start development and server for live preview
 
-    3. npm run dev //To start development and server for live preview
-
-    4. npm run build //To generate minifed files for live server
+    3. npm run build //To generate minifed files for live server
 */
 
 const { src, dest, task, watch, series, parallel } = require('gulp');
 const options = require("./package.json").options; //Options : paths and other options from package.json
 const browserSync = require('browser-sync').create();
-const createFile = require('create-file'); //For creating tailwind utilities styles by command
-const exec = require('child_process').exec; //For executing commands
 const sass = require('gulp-sass'); //For Compiling SASS files
 const concat = require('gulp-concat'); //For Concatinating js,css files
 const postcss = require('gulp-postcss'); //For Compiling tailwind utilities with tailwind config
-const purgecss = require('gulp-purgecss'); //To remove unused CSS 
+const purify = require('gulp-purifycss');//To remove unused CSS 
+const uglify = require('gulp-uglify');//To Minify JS files
+const imagemin = require('gulp-imagemin'); //To Optimize Images
+const purgecss = require('gulp-purgecss'); //To Remove Unsued CSS
+const cleanCSS = require('gulp-clean-css');//To Minify CSS files
 //Note : Webp still not supported in majpr browsers including forefox
 //const webp = require('gulp-webp'); //For converting images to WebP format
 //const replace = require('gulp-replace'); //For Replacing img formats to webp in html
 const del = require('del'); //For Cleaning build/dist for fresh export
-const minify = require('gulp-minifier'); //For minifiying all files
 const logSymbols = require('log-symbols'); //For Symbolic Console logs :) :P 
 
-//Tailwind init : Generates Tailwind Config file with Tailwind CSS Utilities 
-function tailwindInit(done){
-    console.log("\n\t" + logSymbols.info," Generating Tailwind Config file with tailwind styles...\n");
-    exec('tailwind init', function (err) { 
-        if(err)
-            console.log("\n\t" + logSymbols.error,"Oops! Tailwind.js already exists.\n");
-        else
-            console.log("\n\t" + logSymbols.success,"Tailwind.js @ "+ options.config.tailwindjs+" and Tailwind SCSS @ "+ options.paths.src.sass+", created Successfully!\n");
-    });
-    createFile(options.paths.src.sass + '/tailwind.scss', '@tailwind preflight;\n@tailwind components;\n@tailwind utilities;',(cb)=>{ done(cb); });
+class TailwindExtractor {
+  static extract(content) {
+    return content.match(/[A-Za-z0-9-_:\/]+/g) || [];
+  }
 }
 
 //Load Previews on Browser on dev
@@ -61,8 +54,8 @@ function previewReload(done){
     done();
 }
 
-task('html', () => {
-    return src(options.paths.src.base+'/*.html')
+task('dev-html', () => {
+    return src(options.paths.src.base+'/**/*.html')
            //Note : Webp still not supported in majpr browsers including forefox
            //.pipe(replace('.jpg', '.webp'))
            //.pipe(replace('.png', '.webp'))
@@ -70,68 +63,59 @@ task('html', () => {
            .pipe(dest(options.paths.dist.base));
 }); 
 
-//Import google fonts from fonts list in config file
-task('googleFonts' , (done) => {
-    const fonts = require('./tailwind');
-    var fontsList = Object.entries(fonts.fonts).map(([fontClass, fontName]) => ({fontClass,fontName}));
-    const defaultFontsList = ['sans','serif','mono'];
-    fontsList = fontsList.filter( ( el ) => !defaultFontsList.includes( el.fontClass ) );
-    if(fontsList.length > 0){
-        var fontsLink = "@import url(http://fonts.googleapis.com/css?family=";
-        var fontsImport =  "";
-        fontsList.filter((el) => {
-            fontsImport += el.fontName[0];
-            if(options.fontweights !== ""){
-                fontsImport += ":"+ options.fontweights;
-            }
-            fontsImport += "|";
-        });
-        fontsLink += fontsImport.slice(0, -1).split(' ').join('+')+');';
-        //console.log(fontsLink);
-        del([options.paths.src.css + '/fonts.css']).then( () => {
-            createFile(options.paths.src.css + '/fonts.css', fontsLink ,(cb)=>{ done(cb); });
-            done();
-        });
-    } else{
-        del([options.paths.src.css + '/fonts.css']).then(()=>{
-            done();
-        });
-    }
+task('build-html', () => {
+    return src(options.paths.src.base+'/**/*.html')
+           //Note : Webp still not supported in majpr browsers including forefox
+           //.pipe(replace('.jpg', '.webp'))
+           //.pipe(replace('.png', '.webp'))
+           //.pipe(replace('.jpeg','.webp'))
+           .pipe(dest(options.paths.build.base));
+}); 
 
-});
-
-//Compiling scss to css
-task('styles', ()=> {
+//Compiling styles
+task('dev-styles', ()=> {
     var tailwindcss = require('tailwindcss'); 
-    return src(options.paths.src.sass + '/**/*.scss')
+    return src(options.paths.src.css + '/**/*')
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss([
             tailwindcss(options.config.tailwindjs),
             require('autoprefixer'),
         ]))
-        .pipe(
-            purgecss({
-              content: [options.paths.src.base+'/*.html']
-            })
-        )
-        .pipe(dest(options.paths.src.css));
+        .pipe(concat({ path: 'style.css'}))
+        .pipe(dest(options.paths.dist.css));
 });
 
-//merging all css files to a single file
-task('style-output' ,()=> {
-    return src([options.paths.src.css + '/fonts.css',options.paths.src.css + '/tailwind.css',options.paths.src.css + '/**/*.css'],{allowEmpty:true})
-           .pipe(concat({ path: 'css/style.css'}))
-           .pipe(dest(options.paths.dist.base));
+//Compiling styles
+task('build-styles', ()=> {
+    return src(options.paths.dist.css + '/**/*')
+        .pipe(purgecss({
+            content: ["src/**/*.html","src/**/.*js"],
+            extractors: [{
+                extractor: TailwindExtractor,
+                extensions: ['html']
+            }]
+        }))
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(dest(options.paths.build.css));
 });
 
 //merging all script files to a single file
-task('scripts' ,()=> {
+task('dev-scripts' ,()=> {
     return src([options.paths.src.js + '/libs/**/*.js',options.paths.src.js + '/**/*.js'])
-           .pipe(concat({ path: 'js/scripts.js'}))
+           .pipe(concat({ path: 'scripts.js'}))
            .pipe(dest(options.paths.dist.base));
 });
 
-task('imgs', (done) =>{
+
+//merging all script files to a single file
+task('build-scripts' ,()=> {
+    return src([options.paths.src.js + '/libs/**/*.js',options.paths.src.js + '/**/*.js'])
+           .pipe(concat({ path: 'scripts.js'}))
+           .pipe(uglify())
+           .pipe(dest(options.paths.build.js));
+});
+
+task('dev-imgs', (done) =>{
     src(options.paths.src.img + '/**/*')
     //Note : Webp still not supported in majpr browsers including forefox
     //.pipe(webp({ quality: 100 }))
@@ -139,54 +123,37 @@ task('imgs', (done) =>{
     done();
 });
 
-task('exportImgs', (done) =>{
+task('build-imgs', (done) =>{
     src(options.paths.src.img + '/**/*')
     //Note : Webp still not supported in majpr browsers including forefox
     //.pipe(webp({ quality: 100 }))
-    .pipe(dest(options.paths.build.base + '/img'));
+    .pipe(imagemin())
+    .pipe(dest(options.paths.build.img));
     done();
 });
 
+
 //Watch files for changes
 task('watch-changes', (done) => {
-    
-    //Watch tailwind config file for changes and regenerate tailwind styles with modified values
-    watch(options.config.tailwindjs,series('googleFonts','styles','style-output', previewReload));
 
     //Watching HTML Files edits
-    watch(options.paths.src.base+'/**/*.html',series('googleFonts','styles','style-output','html',previewReload));
+    watch(options.config.tailwindjs,series('dev-styles',previewReload));
 
-    //Watching SASS Files edits
-    watch(options.paths.src.sass+'/**/*.scss',series('googleFonts','styles','style-output',previewReload));
+    //Watching HTML Files edits
+    watch(options.paths.src.base+'/**/*.html',series('dev-styles','dev-html',previewReload));
+
+    //Watching css Files edits
+    watch(options.paths.src.css+'/**/*',series('dev-styles',previewReload));
 
     //Watching JS Files edits
-    watch(options.paths.src.js+'/**/*.js',series('scripts',previewReload));
+    watch(options.paths.src.js+'/**/*.js',series('dev-scripts',previewReload));
 
-    //Watching Img Files edits
-    watch(options.paths.src.img+'/**/*',series('imgs',previewReload));
+    //Watching Img Files updates
+    watch(options.paths.src.img+'/**/*',series('dev-imgs',previewReload));
 
     console.log("\n\t" + logSymbols.info,"Watching for Changes made to files.\n");
 
     done();
-});
-
-//Exporting for live site with minified styles,js and html on build command
-task('exportLive', ()=> {
-  return src('./dist/**/*').pipe(minify({
-    minify: true,
-    minifyHTML: {
-      collapseWhitespace: true,
-      conservativeCollapse: true,
-    },
-    minifyJS: {
-      sourceMap: true
-    },
-    minifyCSS: true,
-    getKeptComment: function (content, filePath) {
-        var m = content.match(/\/\*![\s\S]*?\*\//img);
-        return m && m.join('\n') + '\n' || '';
-    }
-  })).pipe(dest(options.paths.build.base))
 });
 
 //Cleaning dist folder for fresh start
@@ -202,16 +169,16 @@ task('clean:build', ()=> {
 });
 
 //series of tasks to run on dev command
-task('development', series('clean:dist','html','googleFonts','styles','style-output','scripts','imgs',(done)=>{
+task('development', series('clean:dist','dev-html','dev-styles','dev-scripts','dev-imgs',(done)=>{
     console.log("\n\t" + logSymbols.info,"npm run dev is complete. Files are located at ./dist\n");
     done();
 }));
 
-task('build', series('clean:build','development','exportLive',(done)=>{
+task('optamizedBuild', series('clean:build','build-html','dev-styles','build-styles','build-scripts','build-imgs',(done)=>{
     console.log("\n\t" + logSymbols.info,"npm run build is complete. Files are located at ./build\n");
     done();
 }));
 
-exports.tailwindInit = tailwindInit;
+
 exports.default = series('development','livepreview','watch-changes');
-exports.build = series('development',parallel('build','exportImgs'));
+exports.build = series('optamizedBuild');

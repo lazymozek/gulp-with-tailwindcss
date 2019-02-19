@@ -4,8 +4,6 @@
   "description": "Gulp with Tailwind CSS Utility",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "init": "gulp tailwindInit",
     "dev": "gulp",
     "build": "gulp build"
   },
@@ -19,7 +17,6 @@
         "base": "./src",
         "css": "./src/css",
         "js": "./src/js",
-        "sass": "./src/sass",
         "img": "./src/img"
       },
       "dist": {
@@ -29,10 +26,12 @@
         "img": "./dist/img"
       },
       "build": {
-        "base": "./build"
+        "base": "./build",
+        "css": "./build/css",
+        "js": "./build/js",
+        "img": "./build/img"
       }
-    },
-    "fontweights": "400,500,600,700,900"
+    }
   },
   "keywords": [
     "gulp",
@@ -44,18 +43,21 @@
   "devDependencies": {
     "autoprefixer": "^9.3.1",
     "browser-sync": "^2.26.3",
-    "create-file": "^1.0.1",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
-    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^4.0.0",
     "gulp-concat": "^2.6.1",
-    "gulp-minifier": "^1.2.2",
+    "gulp-imagemin": "^5.0.3",
     "gulp-postcss": "^8.0.0",
     "gulp-purgecss": "^1.1.1",
+    "gulp-purify-css": "^0.1.0",
+    "gulp-purifycss": "^0.2.0",
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.1",
     "gulp-webp": "^3.0.0",
     "log-symbols": "^2.2.0",
+    "purifycss-extended": "^1.3.6",
     "tailwindcss": "^0.7.0"
   }
 }

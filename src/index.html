@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gulp with TailwindCSS</title>
 
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 
 </head>
 <body class="font-sans bg-grey-lighter">
@@ -29,7 +29,7 @@
     </header>
     <div class="mx-auto py-20 max-w-lg">
         <div class="mb-10">
-            <img class="shadow border border-grey-light rounded" src="img/cover.jpg" alt="Gulp with TailwindCSS">
+            <img class="shadow border border-grey-light rounded hover:shadow-lg" src="img/cover.jpg" alt="Gulp with TailwindCSS">
         </div>
         <div class="instructions">
             <div class="mb-20 text-grey-dark">
@@ -39,13 +39,10 @@
                     // To Install Dev Depedencies<br/>
                     npm install<br/><br/>
 
-                    // To generate tailwind config file with tailwind utilites styles<br/>
-                    npm run init <br/><br/>
-
                     // To start development and server for live preview<br/>
                     npm run dev<br/><br/> 
 
-                    // To generate minifed files for live server<br/>   
+                    // To generate minifed,optamized files for live server<br/>   
                     npm run build 
                 </code>
             </div>
@@ -65,7 +62,6 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"base": "./src",<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"css": "./src/css",<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"js": "./src/js",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sass": "./src/sass",<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"img": "./src/img"<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;"dist": {<br/>
@@ -77,8 +73,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;"build": {<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"base": "./build"<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-                        &nbsp;&nbsp;},<br/>
-                        &nbsp;&nbsp;"fontweights": "400,500,600,700,900"<br/>
+                        &nbsp;&nbsp;}<br/>
                         }
                     </code>
                 </div>
