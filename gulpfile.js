@@ -103,7 +103,7 @@ task('build-styles', ()=> {
 task('dev-scripts' ,()=> {
     return src([options.paths.src.js + '/libs/**/*.js',options.paths.src.js + '/**/*.js'])
            .pipe(concat({ path: 'scripts.js'}))
-           .pipe(dest(options.paths.dist.base));
+           .pipe(dest(options.paths.dist.js));
 });
 
 
