@@ -23,8 +23,8 @@ Gulp with TailwindCSS Starter Kit - A repo which makes your development easier w
 To change the path of files and destination/build folder, edit options in **config.js** file
 ```sh
 {
-    ...
-    paths: {
+  ...
+  paths: {
 		root: "./",
 		src: {
 			base: "./src",
@@ -45,6 +45,6 @@ To change the path of files and destination/build folder, edit options in **conf
 			img: "./build/img"
 		}
 	}
-    ...
+  ...
 }
 ```
