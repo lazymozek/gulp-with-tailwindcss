@@ -2,7 +2,7 @@
 
 Gulp with TailwindCSS Starter Kit - A repo which makes your development easier with predefined gulp tasks that help you to use [tailwindcss](https://github.com/tailwindcss/tailwindcss) with simple npm commands 
 
-## Commands
+## Usage
 
 1. Install Dev Depedencies
 ```sh
@@ -12,45 +12,39 @@ Gulp with TailwindCSS Starter Kit - A repo which makes your development easier w
 ```sh
  npm run dev
 ```
-3. To generate minifed files for live server
+3. To generate minifed files for production server
 ```sh
- npm run build 
+ npm run prod 
 ```
 
-## How to include Google Fonts to your project
+# Configuration
 
-Please follow the this [tailwind documentation](https://tailwindcss.com/docs/fonts/#font-families) to include fonts to tailwind config file and just link using `<link>` tag
 
- 
-# Options
- 
-
-## Paths
-To change the path of files and destination/build folder, edit options in **package.json** file
+To change the path of files and destination/build folder, edit options in **config.js** file
 ```sh
-"options": {
+{
     ...
-    "paths": {
-        "root": "./",
-        "src": {
-            "base": "./src",
-            "css": "./src/css",
-            "js": "./src/js",
-            "img": "./src/img"
-        },
-        "dist": {
-            "base": "./dist",
-            "css": "./dist/css",
-            "js": "./dist/js",
-            "img": "./dist/img"
-        },
-        "build": {
-            "base": "./dist",
-            "css": "./dist/css",
-            "js": "./dist/js",
-            "img": "./dist/img"
-        },
-    }
+    paths: {
+		root: "./",
+		src: {
+			base: "./src",
+			css: "./src/css",
+			js: "./src/js",
+			img: "./src/img"
+		},
+		dist: {
+			base: "./dist",
+			css: "./dist/css",
+			js: "./dist/js",
+			img: "./dist/img"
+		},
+		build: {
+			base: "./build",
+			css: "./build/css",
+			js: "./build/js",
+			img: "./build/img"
+		}
+	}
     ...
 }
 ```

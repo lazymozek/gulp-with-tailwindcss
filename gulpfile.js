@@ -1,5 +1,8 @@
 /*=====================================================================*/
-/*                  Gulp with Tailwind Utility framework               */
+/* Gulp with Tailwind Utility framework                                */
+/* Author : Manjunath G                                                */
+/* URL : manjumjn.com                                                  */
+/* Twitter : twitter.com/manju_mjn                                     */
 /*=====================================================================*/
 
 /*
@@ -10,31 +13,24 @@
 
     2. npm run dev //To start development and server for live preview
 
-    3. npm run build //To generate minifed files for live server
+    3. npm run prod //To generate minifed files for live server
 */
 
-const { src, dest, task, watch, series, parallel } = require('gulp');
-const options = require("./package.json").options; //Options : paths and other options from package.json
+const { src, dest, task, watch, series } = require('gulp');
+const del = require('del'); //For Cleaning build/dist for fresh export
+const options = require("./config"); //Options : paths and other options from config.js
 const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass'); //For Compiling SASS files
 const concat = require('gulp-concat'); //For Concatinating js,css files
 const postcss = require('gulp-postcss'); //For Compiling tailwind utilities with tailwind config
-const purify = require('gulp-purifycss');//To remove unused CSS 
 const uglify = require('gulp-uglify');//To Minify JS files
 const imagemin = require('gulp-imagemin'); //To Optimize Images
-const purgecss = require('gulp-purgecss'); //To Remove Unsued CSS
 const cleanCSS = require('gulp-clean-css');//To Minify CSS files
+const purgecss = require('gulp-purgecss');
 //Note : Webp still not supported in majpr browsers including forefox
 //const webp = require('gulp-webp'); //For converting images to WebP format
 //const replace = require('gulp-replace'); //For Replacing img formats to webp in html
-const del = require('del'); //For Cleaning build/dist for fresh export
 const logSymbols = require('log-symbols'); //For Symbolic Console logs :) :P 
-
-class TailwindExtractor {
-  static extract(content) {
-    return content.match(/[A-Za-z0-9-_:\/]+/g) || [];
-  }
-}
 
 //Load Previews on Browser on dev
 task('livepreview', (done) => {
@@ -56,25 +52,25 @@ function previewReload(done){
 
 task('dev-html', () => {
     return src(options.paths.src.base+'/**/*.html')
-           //Note : Webp still not supported in majpr browsers including forefox
-           //.pipe(replace('.jpg', '.webp'))
-           //.pipe(replace('.png', '.webp'))
-           //.pipe(replace('.jpeg','.webp'))
-           .pipe(dest(options.paths.dist.base));
+        //Note : Webp still not supported in majpr browsers including forefox
+        //.pipe(replace('.jpg', '.webp'))
+        //.pipe(replace('.png', '.webp'))
+        //.pipe(replace('.jpeg','.webp'))
+        .pipe(dest(options.paths.dist.base));
 }); 
 
 task('build-html', () => {
     return src(options.paths.src.base+'/**/*.html')
-           //Note : Webp still not supported in majpr browsers including forefox
-           //.pipe(replace('.jpg', '.webp'))
-           //.pipe(replace('.png', '.webp'))
-           //.pipe(replace('.jpeg','.webp'))
-           .pipe(dest(options.paths.build.base));
+        //Note : Webp still not supported in majpr browsers including forefox
+        //.pipe(replace('.jpg', '.webp'))
+        //.pipe(replace('.png', '.webp'))
+        //.pipe(replace('.jpeg','.webp'))
+        .pipe(dest(options.paths.build.base));
 }); 
 
 //Compiling styles
 task('dev-styles', ()=> {
-    var tailwindcss = require('tailwindcss'); 
+    const tailwindcss = require('tailwindcss'); 
     return src(options.paths.src.css + '/**/*')
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss([
@@ -89,11 +85,12 @@ task('dev-styles', ()=> {
 task('build-styles', ()=> {
     return src(options.paths.dist.css + '/**/*')
         .pipe(purgecss({
-            content: ["src/**/*.html","src/**/.*js"],
-            extractors: [{
-                extractor: TailwindExtractor,
-                extensions: ['html']
-            }]
+            content: ["src/**/*.html", "src/**/.*js"],
+            defaultExtractor: content => {
+                const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || []
+                const innerMatches = content.match(/[^<>"'`\s.()]*[^<>"'`\s.():]/g) || []
+                return broadMatches.concat(innerMatches)
+            }
         }))
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(dest(options.paths.build.css));
@@ -102,17 +99,17 @@ task('build-styles', ()=> {
 //merging all script files to a single file
 task('dev-scripts' ,()=> {
     return src([options.paths.src.js + '/libs/**/*.js',options.paths.src.js + '/**/*.js'])
-           .pipe(concat({ path: 'scripts.js'}))
-           .pipe(dest(options.paths.dist.js));
+        .pipe(concat({ path: 'scripts.js'}))
+        .pipe(dest(options.paths.dist.js));
 });
 
 
 //merging all script files to a single file
 task('build-scripts' ,()=> {
     return src([options.paths.src.js + '/libs/**/*.js',options.paths.src.js + '/**/*.js'])
-           .pipe(concat({ path: 'scripts.js'}))
-           .pipe(uglify())
-           .pipe(dest(options.paths.build.js));
+        .pipe(concat({ path: 'scripts.js'}))
+        .pipe(uglify())
+        .pipe(dest(options.paths.build.js));
 });
 
 task('dev-imgs', (done) =>{
