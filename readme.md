@@ -24,9 +24,9 @@ To change the path of files and destination/build folder, edit options in **conf
 ```sh
 {
   config: {
-		...
-		port: 9050 // browser preview port
-	},
+      ...
+      port: 9050 // browser preview port
+  },
   paths: {
      root: "./",
      src: {
