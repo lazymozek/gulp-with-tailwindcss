@@ -23,7 +23,10 @@ npm run prod
 To change the path of files and destination/build folder, edit options in **config.js** file
 ```sh
 {
-  ...
+  config: {
+		...
+		port: 9050 // browser preview port
+	},
   paths: {
      root: "./",
      src: {
