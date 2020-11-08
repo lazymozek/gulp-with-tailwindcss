@@ -1,20 +1,12 @@
 {
-  "name": "gulp-with-tailwind",
-  "version": "1.0.0",
-  "description": "Gulp with Tailwind CSS Utility",
+  "name": "gulp-with-tailwindcss",
+  "version": "1.2.0",
+  "description": "TailwindCSS StarterKit with Gulp 4",
   "main": "gulpfile.js",
-  "scripts": {
-    "dev": "gulp",
-    "build": "gulp prod",
-    "prod": "gulp prod"
+  "dependencies": {
+    "postcss": "^8.1.6",
+    "tailwindcss": "^1.9.6"
   },
-  "keywords": [
-    "gulp",
-    "tailwind",
-    "tailwindcss"
-  ],
-  "author": "Manjunath G",
-  "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.0.1",
     "browser-sync": "^2.26.13",
@@ -23,18 +15,34 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-imagemin": "^7.1.0",
-    "gulp-load-plugins": "^2.0.5",
     "gulp-postcss": "^9.0.0",
     "gulp-purgecss": "^3.0.0",
-    "gulp-purify-css": "^0.1.0",
-    "gulp-purifycss": "^0.2.0",
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-uglify": "^3.0.2",
     "gulp-webp": "^4.0.1",
-    "log-symbols": "^4.0.0",
-    "postcss": "^8.1.6",
-    "purifycss-extended": "^1.3.6",
-    "tailwindcss": "^1.9.6"
-  }
+    "log-symbols": "^4.0.0"
+  },
+  "scripts": {
+    "dev": "gulp",
+    "build": "gulp prod",
+    "prod": "gulp prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manjumjn/gulp-with-tailwindcss.git"
+  },
+  "keywords": [
+    "gulp",
+    "gulp4",
+    "tailwind",
+    "tailwindcss",
+    "sass"
+  ],
+  "author": "Manjunath G",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manjumjn/gulp-with-tailwindcss/issues"
+  },
+  "homepage": "https://github.com/manjumjn/gulp-with-tailwindcss#readme"
 }
