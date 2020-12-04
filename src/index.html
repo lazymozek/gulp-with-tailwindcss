@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gulp with TailwindCSS</title>
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="../dist/css/style.css">
 </head>
 <body class="bg-gray-200">
     <header class="p-20 bg-gradient-to-r from-red-400 via-red-500 to-pink-500 text-center">
         <h1 class="hero-heading">Gulp with TailwindCSS Kit</h1>
+        <p class="w-full text-center text-white text-xl leading-5 mb-10">Updated with Tailwind 2.0, PostCss 8.0+</p>
         <div class="py-15 flex justify-center space-x-6">
             <a class="github-button" href="https://github.com/manjumjn" data-show-count="true" aria-label="Follow @manjumjn on GitHub">Follow @manjumjn</a>
             <a class="github-button" href="https://github.com/manjumjn/gulp-with-tailwindcss" data-icon="octicon-star" data-show-count="true" aria-label="Star manjumjn/gulp-with-tailwindcss on GitHub">Star</a>
@@ -17,8 +18,8 @@
             <a class="github-button" href="https://github.com/manjumjn/gulp-with-tailwindcss/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download manjumjn/gulp-with-tailwindcss on GitHub">Download</a>
         </div>
     </header>
-    <div class="mx-auto py-20 max-w-lg">
-        <img class="shadow border border-gray-400 rounded hover:shadow-lg mb-10" src="img/cover.jpg" alt="Gulp with TailwindCSS">
+    <div class="mx-auto py-20 max-w-2xl">
+        <img class="shadow transition-shadow duration-500 rounded hover:shadow-lg mb-10" src="img/cover.jpg" alt="Gulp with TailwindCSS">
         <div class="instructions">
             <div class="mb-20 text-gray-700">
                 <h4 class="sub-title">Usage</h4>
@@ -79,7 +80,7 @@ paths: {
         </div>
     </div>
 
-    <script src="./js/scripts.js"></script>
+    <script src="../dist/js/scripts.js"></script>
 
     <!-- Demo Purpose -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
