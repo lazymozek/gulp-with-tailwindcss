@@ -19,6 +19,7 @@
     "gulp-purgecss": "^3.0.0",
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.1.0",
+    "gulp-terser": "^2.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-webp": "^4.0.1",
     "log-symbols": "^4.0.0"

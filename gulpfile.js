@@ -1,5 +1,5 @@
 /**
-*   Gulp with Tailwind Utility framework                                
+*   Gulp with TailwindCSS - An CSS Utility framework                                
 *   Author : Manjunath G                                              
 *   URL : manjumjn.com                                                 
 *   Twitter : twitter.com/manju_mjn                                    
@@ -20,7 +20,7 @@ const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass'); //For Compiling SASS files
 const postcss = require('gulp-postcss'); //For Compiling tailwind utilities with tailwind config
 const concat = require('gulp-concat'); //For Concatinating js,css files
-const uglify = require('gulp-uglify');//To Minify JS files
+const uglify = require('gulp-terser');//To Minify JS files
 const imagemin = require('gulp-imagemin'); //To Optimize Images
 const cleanCSS = require('gulp-clean-css');//To Minify CSS files
 const purgecss = require('gulp-purgecss');// Remove Unused CSS from Styles
