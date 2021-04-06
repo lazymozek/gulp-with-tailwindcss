@@ -54,12 +54,11 @@ function devHTML(){
 } 
 
 function devStyles(){
-  // const tailwindcss = require('tailwindcss'); 
-  const tailwindJIT = require('@tailwindcss/jit');
+  const tailwindcss = require('tailwindcss'); 
   return src(`${options.paths.src.css}/**/*`).pipe(sass().on('error', sass.logError))
     .pipe(dest(options.paths.src.css))
     .pipe(postcss([
-      tailwindJIT(options.config.tailwindjs),
+      tailwindcss(options.config.tailwindjs),
       require('autoprefixer'),
     ]))
     .pipe(concat({ path: 'style.css'}))
