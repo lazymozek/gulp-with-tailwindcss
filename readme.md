@@ -6,15 +6,15 @@ Gulp with TailwindCSS Starter Kit ( Updated with [TailwindCSS JIT](https://githu
 
 1. Install Dev Depedencies
 ```sh
-npm install
+npm install // or yarn install
 ```
 2. To start development and server for live preview
 ```sh
-npm run dev
+npm run dev // or yarn dev
 ```
 3. To generate minifed files for production server
 ```sh
-npm run prod 
+npm run prod // or yarn prod
 ```
 
 # Configuration

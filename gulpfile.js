@@ -1,7 +1,7 @@
 /**
 *   Gulp with TailwindCSS - An CSS Utility framework                                
 *   Author : Manjunath G                                              
-*   URL : manjumjn.com                                                 
+*   URL : manjumjn.com | lazymozek.com
 *   Twitter : twitter.com/manju_mjn                                    
 **/
 
@@ -25,7 +25,7 @@ const imagemin = require('gulp-imagemin'); //To Optimize Images
 const cleanCSS = require('gulp-clean-css');//To Minify CSS files
 const purgecss = require('gulp-purgecss');// Remove Unused CSS from Styles
 
-//Note : Webp still not supported in majpr browsers including forefox
+//Note : Webp still not supported in major browsers including forefox
 //const webp = require('gulp-webp'); //For converting images to WebP format
 //const replace = require('gulp-replace'); //For Replacing img formats to webp in html
 const logSymbols = require('log-symbols'); //For Symbolic Console logs :) :P 
