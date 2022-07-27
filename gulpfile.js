@@ -17,14 +17,14 @@ const del = require('del'); //For Cleaning build/dist for fresh export
 const options = require("./config"); //paths and other options from config.js
 const browserSync = require('browser-sync').create();
 
-const sass = require('gulp-sass'); //For Compiling SASS files
+const sass = require('gulp-sass')(require('sass')); //For Compiling SASS files
 const postcss = require('gulp-postcss'); //For Compiling tailwind utilities with tailwind config
 const concat = require('gulp-concat'); //For Concatinating js,css files
 const uglify = require('gulp-terser');//To Minify JS files
 const imagemin = require('gulp-imagemin'); //To Optimize Images
 const cleanCSS = require('gulp-clean-css');//To Minify CSS files
 const purgecss = require('gulp-purgecss');// Remove Unused CSS from Styles
-
+const autoprefixer = require('gulp-autoprefixer');
 //Note : Webp still not supported in major browsers including forefox
 //const webp = require('gulp-webp'); //For converting images to WebP format
 //const replace = require('gulp-replace'); //For Replacing img formats to webp in html
@@ -62,6 +62,10 @@ function devStyles(){
       require('autoprefixer'),
     ]))
     .pipe(concat({ path: 'style.css'}))
+    .pipe(autoprefixer({
+      browsers: ['last 99 versions'],
+      cascade: false
+    }))
     .pipe(dest(options.paths.dist.css));
 }
 
