@@ -24,7 +24,8 @@
     "gulp-terser": "^2.1.0",
     "gulp-webp": "^4.0.1",
     "log-symbols": "^4.1.0",
-    "sass": "^1.50.0"
+    "sass": "^1.50.0",
+    "gulp-autoprefixer": "^8.0.0"
   },
   "scripts": {
     "dev": "gulp",
