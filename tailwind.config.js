@@ -1,12 +1,21 @@
 module.exports = {
   mode: 'jit', // Just-In-Time Compiler
-  purge: ['./src/**/*.html'],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+		'./src/**/*.html'
+	],
+  corePlugins: {
+    preflight: false,
+  },
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
-    extend: {},
+    fontFamily: {
+      'montserrat': ['Montserrat'],
+    }
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    (process.env.NODE_ENV === 'production' ? { cssnano: {} } : {})
+  ]
 }
