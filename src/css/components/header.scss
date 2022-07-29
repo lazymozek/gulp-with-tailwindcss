@@ -1,0 +1,11 @@
+header{
+    @apply w-full bg-red-400;
+    
+    .container{
+        @apply mx-auto;
+    }
+
+    .main-row{
+        @apply flex justify-between;
+    }    
+}

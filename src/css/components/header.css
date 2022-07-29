@@ -1,0 +1,9 @@
+header {
+  @apply w-full bg-red-400;
+}
+header .container {
+  @apply mx-auto;
+}
+header .main-row {
+  @apply flex justify-between;
+}

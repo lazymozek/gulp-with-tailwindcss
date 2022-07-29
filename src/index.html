@@ -5,86 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gulp with TailwindCSS</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body class="bg-gray-200">
-    <header class="p-20 bg-gradient-to-r from-red-400 via-red-500 to-pink-500 text-center">
-        <h1 class="hero-heading">Gulp with TailwindCSS Kit</h1>
-        <p class="w-full text-center text-white text-xl leading-5 mb-10">Updated with Tailwind 2.0, PostCss 8.0+</p>
-        <div class="py-15 flex justify-center space-x-6">
-            <a class="github-button" href="https://github.com/manjumjn" data-show-count="true" aria-label="Follow @manjumjn on GitHub">Follow @manjumjn</a>
-            <a class="github-button" href="https://github.com/manjumjn/gulp-with-tailwindcss" data-icon="octicon-star" data-show-count="true" aria-label="Star manjumjn/gulp-with-tailwindcss on GitHub">Star</a>
-            <a class="github-button" href="https://github.com/manjumjn/gulp-with-tailwindcss/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork manjumjn/gulp-with-tailwindcss on GitHub">Fork</a>
-            <a class="github-button" href="https://github.com/manjumjn/gulp-with-tailwindcss/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download manjumjn/gulp-with-tailwindcss on GitHub">Download</a>
+    <header>
+        <div class="container">
+            <div class="main-row">
+                <a href="/">
+                    <figure>
+                        <img src="https://via.placeholder.com/200x100?text=Logo"/>
+                    </figure>
+                </a>
+
+                <form>
+                    <fieldset>
+                        <input type="text" placeholder="Pesquisar por produto..." />
+                    </fieldset>
+
+                    <button type="submit">Buscar</button>
+                </form>
+
+                <ul>
+                    <li>
+                        <a href="pages/page2.html">
+                            <svg width="34" height="37" viewBox="0 0 34 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="17.0004" cy="8.86957" r="8.86957" fill="#A5BFD8"></circle>
+                                <path d="M34 36.2173C34 27.6448 26.389 20.6956 17 20.6956C7.61103 20.6956 0 27.6448 0 36.2173H34Z" fill="#A5BFD8"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/page2.html">
+                            <svg width="20" height="26" viewBox="0 0 20 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.34573 13.2185C-1.05435 9.06144 0.369969 3.74581 4.52703 1.34574C8.68409 -1.05434 13.9997 0.369974 16.3998 4.52703C18.4247 8.03432 17.7273 12.3663 14.9633 15.0762L15.8245 16.5679L15.1973 16.93L18.8187 23.2025C19.2187 23.8954 18.9814 24.7813 18.2885 25.1813C17.5957 25.5813 16.7097 25.3439 16.3097 24.6511L12.6883 18.3786L12.061 18.7407L11.1998 17.2491C7.47095 18.2878 3.37066 16.7258 1.34573 13.2185Z" fill="#A5BFD8"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/page2.html">
+                            <svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M28.3844 4.3647H6.31256C6.05904 4.3647 5.94455 4.30622 5.89548 4.02217C5.69921 2.91939 5.47024 1.81661 5.24944 0.713835C5.14313 0.162446 4.96322 0.00371306 4.41531 0.00371306H3.04145C2.25638 0.00371306 1.47131 -0.00464132 0.686244 0.00371306C0.179222 0.0120674 -0.12336 0.429787 0.0483734 0.85586C0.162862 1.14826 0.383668 1.25687 0.678068 1.25687H3.85922C4.05549 1.25687 4.12091 1.32371 4.1618 1.51586C4.34171 2.49332 4.54615 3.47913 4.73424 4.45659L7.77637 19.8454C7.81726 20.0459 7.79273 20.1628 7.64553 20.3132C6.48428 21.558 6.68873 23.5714 8.08713 24.5071C8.43059 24.741 8.85584 24.8413 9.23202 25H9.96802C10.1479 24.9499 10.3197 24.9081 10.4914 24.8413C10.8556 24.71 11.1882 24.5011 11.4673 24.2284C11.7464 23.9557 11.9656 23.6255 12.1102 23.2597C12.2548 22.8939 12.3216 22.5008 12.3062 22.1066C12.2907 21.7124 12.1934 21.326 12.0206 20.9732C11.9797 20.898 11.947 20.8228 11.898 20.7226H20.2638C20.1575 21.0902 20.0021 21.4577 19.9531 21.8337C19.7486 23.2706 20.5909 24.5405 21.9566 24.9165C22.046 24.9367 22.1336 24.9646 22.2183 25H23.0116C23.0558 24.9755 23.1024 24.9559 23.1506 24.9415C24.3036 24.6825 25.1051 23.8137 25.2932 22.619C25.4077 21.9256 25.2277 21.299 24.8925 20.6975L25.0315 20.6056C25.2686 20.4385 25.3749 20.2213 25.3095 19.9289C25.2441 19.6365 25.0315 19.4778 24.7371 19.4527H8.94579C8.87219 19.0684 8.7986 18.7175 8.725 18.3332H23.9602C24.1237 18.3332 24.2873 18.3332 24.4508 18.3165C25.8329 18.233 26.9778 17.2471 27.2313 15.8436C27.5339 14.1894 27.7874 12.5186 28.0572 10.8477L28.9895 5.14166C29.0549 4.70723 28.8096 4.39811 28.3844 4.3647Z" fill="#A5BFD8"></path>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <span>Categoria 1</span>
+                    </li>
+                    <li>
+                        <span>Categoria 2</span>
+                    </li>
+                    <li>
+                        <span>Categoria 3</span>
+                    </li>
+                    <li>
+                        <span>Categoria 4</span>
+                    </li>
+
+                </ul>
+            </nav>
         </div>
     </header>
-    <div class="mx-auto py-20 max-w-2xl">
-        <img class="shadow transition-shadow duration-500 rounded hover:shadow-lg mb-10" src="img/cover.jpg" alt="Gulp with TailwindCSS">
-        <div class="instructions">
-            <div class="mb-20 text-gray-700">
-                <h4 class="sub-title">Usage</h4>
-                <p>Use the following commands to get started.</p>
-                <code class="code transform translate-x-[20px]">
-                    <em>// To Install Dev Depedencies</em><br/>
-                    npm install<br/><br/>
 
-                    <em>// To start development and server for live preview</em><br/>
-                    npm run dev<br/><br/>
+    <main>
+        <div class="container">
+            <aside>
 
-                    <em>// To generate minifed,optamized files for production server</em><br/>
-                    npm run prod
-                </code>
-            </div>
+            </aside>
+            <div>
+                <section>
+                    <article>
+                        <figure>
+                            <img />
+                            <figcaption>
 
-            <div class="mb-10 text-gray-600">
-                    <h4 class="sub-title">Options</h4>
-                    <p>To change the path of files and destination/build folder configure at <b class="font-bold">config.js</b> file</p>
-                    <!-- Ignore the messay code :P only for demo -->
-<code class="code pre transform translate-x-[-20px]">config: {
-    ...
-    port: 9050 <em>//Update port here</em>
-},
-paths: {
-    root: "./",
-    src: {
-        base: "./src",
-        css: "./src/css",
-        js: "./src/js",
-        img: "./src/img"
-    },
-    dist: {
-        base: "./dist",
-        css: "./dist/css",
-        js: "./dist/js",
-        img: "./dist/img"
-    },
-    build: {
-        base: "./build",
-        css: "./build/css",
-        js: "./build/js",
-        img: "./build/img"
-    }
-}
-</code>
-                </div>
-
-        </div>
-
-        <div class="social">
-            <p class="w-full text-center">Want to connect with me?</p>
-            <div class="flex justify-center space-x-6">
-                <a href="https://manjumjn.com">Website</a>
-                <a href="https://www.facebook.com/manjumjn">Facebook</a>
-                <a href="https://twitter.com/manju_mjn">Twitter</a>
-                <a href="mailto:manjumjng2@gmail.com">Email Me</a>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
             </div>
         </div>
-    </div>
+        
+    </main>
 
+    <footer>
+
+    </footer>
+    
     <script src="./js/scripts.js"></script>
-
-    <!-- Demo Purpose -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-
 </body>
 </html>
