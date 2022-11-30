@@ -2,3 +2,4 @@ node_modules
 dist
 build
 src/css/*.css
+*.lock
