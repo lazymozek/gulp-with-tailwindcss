@@ -7,7 +7,6 @@
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "browser-sync": "^2.27.10",
-    "del": "^7.0.0",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-clean-css": "^4.3.0",
@@ -18,7 +17,6 @@
     "gulp-replace": "^1.1.3",
     "gulp-sass": "^5.1.0",
     "gulp-terser": "^2.1.0",
-    "gulp-vite": "^1.2.0",
     "gulp-webp": "^3.0.0",
     "log-symbols": "^4.1.0",
     "postcss": "^8.4.14",
