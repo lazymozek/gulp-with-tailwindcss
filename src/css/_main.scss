@@ -1,0 +1,37 @@
+//All styles can be added here.
+.hero-heading {
+  @apply text-4xl mb-10 text-white font-medium;
+}
+
+.instructions {
+  .sub-title {
+    @apply text-gray-900 pb-2 border-b-2 border-gray-400 mb-5 text-xl font-medium;
+
+    & + p {
+      @apply mb-3;
+    }
+  }
+  .code {
+    @apply w-full block font-mono border rounded bg-gray-100 text-gray-700 px-4 py-5 leading-normal text-sm shadow;
+
+    &.pre {
+      @apply whitespace-pre-wrap;
+    }
+
+    em {
+      @apply opacity-75;
+    }
+  }
+}
+
+.social {
+  @apply block pt-6 text-gray-700;
+
+  a {
+    @apply text-blue-500 font-medium p-4;
+
+    &:hover {
+      @apply text-blue-700;
+    }
+  }
+}

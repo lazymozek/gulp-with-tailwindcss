@@ -13,7 +13,7 @@
 */
 
 const { src, dest, task, watch, series, parallel } = require("gulp");
-const del = require("del"); //For Cleaning build/dist for fresh export
+const clean = require("gulp-clean"); //For Cleaning build/dist for fresh export
 const options = require("./config"); //paths and other options from config.js
 const browserSync = require("browser-sync").create();
 
@@ -24,7 +24,6 @@ const uglify = require("gulp-terser"); //To Minify JS files
 const imagemin = require("gulp-imagemin"); //To Optimize Images
 const cleanCSS = require("gulp-clean-css"); //To Minify CSS files
 const purgecss = require("gulp-purgecss"); // Remove Unused CSS from Styles
-const autoprefixer = require("gulp-autoprefixer");
 //Note : Webp still not supported in major browsers including forefox
 //const webp = require('gulp-webp'); //For converting images to WebP format
 //const replace = require('gulp-replace'); //For Replacing img formats to webp in html
@@ -60,16 +59,8 @@ function devStyles() {
   return src(`${options.paths.src.css}/**/*.scss`)
     .pipe(sass().on("error", sass.logError))
     .pipe(dest(options.paths.src.css))
-    .pipe(
-      postcss([tailwindcss(options.config.tailwindjs), require("autoprefixer")])
-    )
+    .pipe(postcss([tailwindcss(options.config.tailwindjs)]))
     .pipe(concat({ path: "style.css" }))
-    .pipe(
-      autoprefixer({
-        browsers: ["last 99 versions"],
-        cascade: false,
-      })
-    )
     .pipe(dest(options.paths.dist.css));
 }
 
@@ -91,7 +82,7 @@ function devImages() {
 
 function watchFiles() {
   watch(
-    `${options.paths.src.base}/**/*.html`,
+    `${options.paths.src.base}/**/*.{html,php}`,
     series(devHTML, devStyles, previewReload)
   );
   watch(
@@ -108,12 +99,12 @@ function devClean() {
     "\n\t" + logSymbols.info,
     "Cleaning dist folder for fresh start.\n"
   );
-  return del([options.paths.dist.base]);
+  return src(options.paths.dist.base, { read: false }).pipe(clean());
 }
 
 //Production Tasks (Optimized Build for Live/Production Sites)
 function prodHTML() {
-  return src(`${options.paths.src.base}/**/*.html`).pipe(
+  return src(`${options.paths.src.base}/**/*.{html,php}`).pipe(
     dest(options.paths.build.base)
   );
 }
@@ -122,7 +113,7 @@ function prodStyles() {
   return src(`${options.paths.dist.css}/**/*`)
     .pipe(
       purgecss({
-        content: ["src/**/*.{html,js}"],
+        content: ["src/**/*.{html,js,php}"],
         defaultExtractor: (content) => {
           const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
           const innerMatches =
@@ -156,7 +147,9 @@ function prodClean() {
     "\n\t" + logSymbols.info,
     "Cleaning build folder for fresh start.\n"
   );
-  return del([options.paths.build.base]);
+  return src(options.paths.build.base, { read: false, allowEmpty: true }).pipe(
+    clean()
+  );
 }
 
 function buildFinish(done) {
