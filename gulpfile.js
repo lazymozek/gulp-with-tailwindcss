@@ -96,7 +96,9 @@ function devClean() {
     "\n\t" + logSymbols.info,
     "Cleaning dist folder for fresh start.\n"
   );
-  return src(options.paths.dist.base, { read: false }).pipe(clean());
+  return src(options.paths.dist.base, { read: false, allowEmpty: true }).pipe(
+    clean()
+  );
 }
 
 //Production Tasks (Optimized Build for Live/Production Sites)
