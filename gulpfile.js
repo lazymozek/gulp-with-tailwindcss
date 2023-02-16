@@ -25,6 +25,7 @@ const imagemin = require("gulp-imagemin"); //To Optimize Images
 const cleanCSS = require("gulp-clean-css"); //To Minify CSS files
 const purgecss = require("gulp-purgecss"); // Remove Unused CSS from Styles
 const logSymbols = require("log-symbols"); //For Symbolic Console logs :) :P
+const includePartials = require("gulp-file-include"); //For supporting partials if required
 
 //Load Previews on Browser on dev
 function livePreview(done) {
@@ -46,9 +47,9 @@ function previewReload(done) {
 
 //Development Tasks
 function devHTML() {
-  return src(`${options.paths.src.base}/**/*.html`).pipe(
-    dest(options.paths.dist.base)
-  );
+  return src(`${options.paths.src.base}/**/*.html`)
+    .pipe(includePartials())
+    .pipe(dest(options.paths.dist.base));
 }
 
 function devStyles() {
@@ -103,9 +104,9 @@ function devClean() {
 
 //Production Tasks (Optimized Build for Live/Production Sites)
 function prodHTML() {
-  return src(`${options.paths.src.base}/**/*.{html,php}`).pipe(
-    dest(options.paths.build.base)
-  );
+  return src(`${options.paths.src.base}/**/*.{html,php}`)
+    .pipe(includePartials())
+    .pipe(dest(options.paths.build.base));
 }
 
 function prodStyles() {
