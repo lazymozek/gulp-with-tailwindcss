@@ -4,9 +4,12 @@ Gulp with TailwindCSS v3 Starter Kit ( ~~Updated with [TailwindCSS JIT](https://
 
 ## Included Tailwind Plugins
 
+You can disable the plugins from `config.js` using `plugins` option
+
 - @tailwindcss/forms
 - @tailwindcss/line-clamp
 - @tailwindcss/typography
+- @tailwindcss/container-queries
 
 ## Usage
 
@@ -35,29 +38,35 @@ To change the path of files and destination/build folder, edit options in **conf
 ```sh
 {
   config: {
-      ...
-      port: 9050 // browser preview port
+    ...
+    port: 9050 // browser preview port
+  },
+  plugins: {
+    typograpy: true,
+    forms: true,
+    lineClamp: true,
+    containerQueries: true,
   },
   paths: {
-     root: "./",
-     src: {
+    root: "./",
+    src: {
         base: "./src",
         css: "./src/css",
         js: "./src/js",
         img: "./src/img"
-     },
-     dist: {
-         base: "./dist",
-         css: "./dist/css",
-         js: "./dist/js",
-         img: "./dist/img"
-     },
-     build: {
-         base: "./build",
-         css: "./build/css",
-         js: "./build/js",
-         img: "./build/img"
-     }
+    },
+    dist: {
+        base: "./dist",
+        css: "./dist/css",
+        js: "./dist/js",
+        img: "./dist/img"
+    },
+    build: {
+        base: "./build",
+        css: "./build/css",
+        js: "./build/js",
+        img: "./build/img"
+    }
   }
   ...
 }

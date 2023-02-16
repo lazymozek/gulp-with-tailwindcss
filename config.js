@@ -7,6 +7,7 @@ module.exports = {
     typograpy: true,
     forms: true,
     lineClamp: true,
+    containerQueries: true,
   },
   paths: {
     root: "./",
