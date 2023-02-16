@@ -1,13 +1,14 @@
 {
   "name": "gulp-with-tailwindcss",
-  "version": "1.2.0",
+  "version": "2.1.0",
   "description": "TailwindCSS StarterKit with Gulp 4",
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.0",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
-    "@tailwindcss/typography": "^0.5.8",
+    "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.13",
     "browser-sync": "^2.27.10",
     "gulp": "^4.0.2",
@@ -20,9 +21,11 @@
     "gulp-sass": "^5.1.0",
     "gulp-terser": "^2.1.0",
     "log-symbols": "^4.1.0",
-    "postcss": "^8.4.14",
-    "sass": "^1.50.0",
-    "tailwindcss": "^3.1.6"
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.4",
+    "prettier-plugin-tailwindcss": "^0.2.3",
+    "sass": "^1.58.1",
+    "tailwindcss": "^3.2.6"
   },
   "scripts": {
     "dev": "gulp",

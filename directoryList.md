@@ -1,12 +1,10 @@
-|-- undefined
-    |-- .gitignore
+|-- Root
     |-- config.js
     |-- gulpfile.js
     |-- package-lock.json
     |-- package.json
     |-- readme.md
     |-- tailwind.config.js
-    |-- _config.yml
     |-- build
     |   |-- index.html
     |   |-- css

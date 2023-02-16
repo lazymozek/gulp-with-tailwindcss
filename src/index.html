@@ -9,15 +9,16 @@
   </head>
   <body class="bg-gray-200">
     <header
-      class="p-20 bg-gradient-to-r from-red-400 via-red-500 to-pink-500 text-center"
+      class="bg-gradient-to-r from-red-400 via-red-500 to-pink-500 p-20 text-center"
     >
       <h1 class="hero-heading">Gulp with TailwindCSS v3 Kit</h1>
-      <p class="w-full text-center text-white text-xl leading-5 mb-10">
-        Updated with Tailwind v3.0, PostCSS v8.0+
+      <p class="mb-10 w-full text-center text-xl leading-5 text-white">
+        Updated with Tailwind v3.2+, PostCSS v8.0+
       </p>
-      <p class="w-full text-center text-white text-base leading-5 mb-10">
-        Tailwind Plugins included:<br />
-        @tailwindcss/typography, @tailwindcss/forms, @tailwindcss/line-clamp
+      <p class="mb-10 w-full text-center text-base leading-5 text-white">
+        Tailwind Plugins included: (can be disabled in config.js)<br />
+        @tailwindcss/typography, @tailwindcss/forms, @tailwindcss/line-clamp,
+        @tailwindcss/container-queries
       </p>
       <div class="py-15 flex justify-center space-x-6">
         <a
@@ -52,9 +53,9 @@
         >
       </div>
     </header>
-    <div class="mx-auto py-20 max-w-2xl">
+    <div class="mx-auto max-w-2xl py-20">
       <img
-        class="shadow transition-shadow duration-500 rounded hover:shadow-lg mb-10"
+        class="mb-10 rounded shadow transition-shadow duration-500 hover:shadow-lg"
         src="img/cover.jpg"
         alt="Gulp with TailwindCSS"
       />
@@ -62,7 +63,7 @@
         <div class="mb-20 text-gray-700">
           <h4 class="sub-title">Usage</h4>
           <p>Use the following commands to get started.</p>
-          <code class="code transform translate-x-[20px]">
+          <code class="code translate-x-[20px] transform">
             <em>// To Install Dev Depedencies</em><br />
             npm install<br /><br />
 
@@ -84,31 +85,37 @@
           <!-- Ignore the messay code :P only for demo -->
           <!-- prettier-ignore -->
           <code class="code pre transform translate-x-[-20px]">
-            config: { 
-              ... port: 9050 <em>//Update port here</em>
-            }, 
-            paths: { 
-              root: "./", 
-              src: { 
-                base: "./src", 
-                css: "./src/css", 
-                js: "./src/js", 
-                img: "./src/img" 
-              }, 
-              dist: { 
-                base: "./dist", 
-                css: "./dist/css", 
-                js: "./dist/js", 
-                img: "./dist/img" 
-              }, 
-              build: { 
-                base: "./build", 
-                css: "./build/css", 
-                js: "./build/js", 
-                img: "./build/img"
-              } 
-            }
-          </code>
+  config: { 
+    ... port: 9050 <em>//Update port here</em>
+  },
+  plugins: {
+    typograpy: true, <em>// set `false` to disable particular plugin</em>
+    forms: true,
+    lineClamp: true,
+    containerQueries: true,
+  },
+  paths: { 
+    root: "./", 
+    src: { 
+      base: "./src", 
+      css: "./src/css", 
+      js: "./src/js", 
+      img: "./src/img" 
+    }, 
+    dist: { 
+      base: "./dist", 
+      css: "./dist/css", 
+      js: "./dist/js", 
+      img: "./dist/img" 
+    }, 
+    build: { 
+      base: "./build", 
+      css: "./build/css", 
+      js: "./build/js", 
+      img: "./build/img"
+    } 
+  }
+</code>
         </div>
       </div>
 
