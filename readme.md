@@ -6,10 +6,10 @@ Gulp with TailwindCSS v3 Starter Kit ( ~~Updated with [TailwindCSS JIT](https://
 
 You can disable the plugins from `config.js` using `plugins` option
 
-- @tailwindcss/forms
-- @tailwindcss/line-clamp
-- @tailwindcss/typography
-- @tailwindcss/container-queries
+- [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms)
+- [@tailwindcss/line-clamp](https://github.com/tailwindlabs/tailwindcss-line-clamp)
+- [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)
+- [@tailwindcss/container-queries](https://github.com/tailwindlabs/tailwindcss-container-queries)
 
 ## Usage
 
