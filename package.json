@@ -1,6 +1,6 @@
 {
   "name": "gulp-with-tailwindcss",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "TailwindCSS StarterKit with Gulp 4",
   "main": "gulpfile.js",
   "dependencies": {},
@@ -15,6 +15,7 @@
     "gulp-clean": "^0.4.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
+    "gulp-file-include": "^2.3.0",
     "gulp-imagemin": "7.1.0",
     "gulp-postcss": "^9.0.1",
     "gulp-purgecss": "^4.1.3",
