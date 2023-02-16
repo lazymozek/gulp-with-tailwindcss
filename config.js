@@ -3,6 +3,11 @@ module.exports = {
     tailwindjs: "./tailwind.config.js",
     port: 9050,
   },
+  plugins: {
+    typograpy: true,
+    forms: true,
+    lineClamp: true,
+  },
   paths: {
     root: "./",
     src: {
