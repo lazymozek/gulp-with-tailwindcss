@@ -1,6 +1,6 @@
 {
   "name": "gulp-with-tailwindcss",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "TailwindCSS StarterKit with Gulp 4",
   "main": "gulpfile.js",
   "dependencies": {},
