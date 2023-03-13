@@ -4,7 +4,7 @@ module.exports = {
     port: 9050,
   },
   plugins: {
-    typograpy: true,
+    typography: true,
     forms: true,
     lineClamp: true,
     containerQueries: true,
