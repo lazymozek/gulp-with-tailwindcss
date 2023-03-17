@@ -1,18 +1,18 @@
 //All styles can be added here.
 .hero-heading {
-  @apply text-4xl mb-10 text-white font-medium;
+  @apply mb-10 text-4xl font-medium text-white;
 }
 
 .instructions {
   .sub-title {
-    @apply text-gray-900 pb-2 border-b-2 border-gray-400 mb-5 text-xl font-medium;
+    @apply mb-5 border-b-2 border-gray-400 pb-2 text-xl font-medium text-gray-900;
 
     & + p {
       @apply mb-3;
     }
   }
   .code {
-    @apply w-full block font-mono border rounded bg-gray-100 text-gray-700 px-4 py-5 leading-normal text-sm shadow;
+    @apply block w-full rounded border bg-gray-100 px-4 py-5 font-mono text-sm leading-normal text-gray-700 shadow;
 
     &.pre {
       @apply whitespace-pre-wrap;
@@ -28,10 +28,157 @@
   @apply block pt-6 text-gray-700;
 
   a {
-    @apply text-blue-500 font-medium p-4;
+    @apply p-4 font-medium text-blue-500;
 
     &:hover {
       @apply text-blue-700;
     }
   }
+}
+
+// highlights
+
+pre[class*="language-"] {
+  color: #f8fafc;
+  @apply max-w-2xl;
+}
+
+.token.class-name,
+.token.function,
+.token.selector,
+.token.selector .class,
+.token.selector.class,
+.token.module,
+.token.tag {
+  color: #f472b6;
+}
+
+.token.attr-name,
+.token.important,
+.token.keyword,
+.token.pseudo-class,
+.token.rule {
+  color: #cbd5e1;
+}
+
+.token.attr-value,
+.token.class,
+.token.property,
+.token.string {
+  color: #7dd3fc;
+}
+
+.token.attr-equals,
+.token.punctuation {
+  color: #64748b;
+}
+
+.token.combinator,
+.token.comment,
+.token.operator {
+  color: #94a3b8;
+}
+
+.language-css .token.function,
+.token.unit {
+  color: #99f6e4;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+  word-wrap: normal;
+  -webkit-hyphens: none;
+  hyphens: none;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  text-align: left;
+  white-space: pre;
+  word-break: normal;
+  word-spacing: normal;
+}
+
+code[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+pre[class*="language-"]::-moz-selection {
+  background: rgba(29, 59, 83, 0.99);
+  text-shadow: none;
+}
+
+code[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+pre[class*="language-"]::selection {
+  background: rgba(29, 59, 83, 0.99);
+  text-shadow: none;
+}
+
+.token.cdata,
+.token.comment,
+.token.prolog {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: #c792ea;
+}
+
+.token.deleted {
+  color: rgba(239, 83, 80, 0.56);
+  font-style: italic;
+}
+
+.token.keyword,
+.token.operator,
+.token.tag {
+  color: #f472b6;
+}
+
+.token.boolean {
+  color: #ff5874;
+}
+
+.token.number {
+  color: #f78c6c;
+}
+
+.token.builtin,
+.token.char,
+.token.constant,
+.token.function {
+  color: #f472b6;
+}
+
+.token.doctype,
+.token.selector {
+  color: #c792ea;
+  font-style: italic;
+}
+
+.token.attr-name,
+.token.inserted {
+  color: #addb67;
+  font-style: italic;
+}
+
+.language-css .token.string,
+.style .token.string,
+.token.entity,
+.token.string,
+.token.url {
+  color: #7dd3fc;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.class-name {
+  color: #ffcb8b;
+}
+
+.token.important,
+.token.regex,
+.token.variable {
+  color: #d6deeb;
 }
