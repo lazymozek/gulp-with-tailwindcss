@@ -1,73 +1,74 @@
 # Gulp with TailwindCSS Starter Kit
 
-Gulp with TailwindCSS v3 Starter Kit ( ~~Updated with [TailwindCSS JIT](https://github.com/tailwindlabs/tailwindcss-jit)~~ - **latest tailwind has JIT is built-in** ) - A repo which makes your development easier with predefined gulp tasks that help you to use [tailwindcss](https://github.com/tailwindcss/tailwindcss) with simple commands.
+Gulp with TailwindCSS v3 Starter Kit ( ~~Updated with [TailwindCSS JIT](https://github.com/tailwindlabs/tailwindcss-jit)~~ - **latest tailwind has JIT is built-in** ) - A repo that makes your development easier with predefined gulp tasks that help you to use [tailwindcss](https://github.com/tailwindcss/tailwindcss) with simple commands.
 
-## Included Tailwind Plugins
+## Features
 
-You can disable the plugins from `config.js` using `plugins` option
+- Easy configuration using config.js
+- Live reload on file/assets changes using browser-sync
+- SCSS support with auto-purge css
+- Minification of styles and scripts on production build
+- Minification of images on production build using imagemin
+- Includes following tailwindcss plugins (can be disabled/enabled with config.js)
+  -- [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms)
+  -- [@tailwindcss/line-clamp](https://github.com/tailwindlabs/tailwindcss-line-clamp)
+  -- [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)
+  -- [@tailwindcss/container-queries](https://github.com/tailwindlabs/tailwindcss-container-queries)
 
-- [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms)
-- [@tailwindcss/line-clamp](https://github.com/tailwindlabs/tailwindcss-line-clamp)
-- [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)
-- [@tailwindcss/container-queries](https://github.com/tailwindlabs/tailwindcss-container-queries)
+## Quick Start
 
-## Usage
+You can get started by clicking on `Use this template` for creating new repo using this template or simply by cloning it.
 
-1. Install Dev Depedencies
+Install dev dependencies
 
 ```sh
-npm install // or yarn install
+yarn install // or npm install
 ```
 
-2. To start development and server for live preview
+Start development server with live preview
 
 ```sh
-npm run dev // or yarn dev
+yarn dev // or npm run dev
 ```
 
-3. To generate minifed files for production server
+Generate build files for production server
 
 ```sh
-npm run prod // or yarn prod
+yarn prod // or npm run prod
 ```
 
-# Configuration
+All dev files are present in `src` folder. The build version can be found in `build` folder after running `yarn build` command.
 
-To change the path of files and destination/build folder, edit options in **config.js** file
+## Configuration
+
+All configurations are found in `config.js` file in the root directory. You can configure browser default port, enable/disable plugins by simply updating boolean values (Default is set to `true`) and many more.
 
 ```sh
-{
-  config: {
+const config = {
+  tailwindjs: "./tailwind.config.js",
+  port: 9050, // default port
+  // purgecss options
+  purgecss: {
+    content: ["src/**/*.{html,js,php}"],
     ...
-    port: 9050 // browser preview port
   },
-  plugins: {
-    typograpy: true,
-    forms: true,
-    lineClamp: true,
-    containerQueries: true,
+  // imagemin options for image optimizations
+  imagemin: {
+    png: [0.7, 0.7], // range between min (0) and max (1) as quality - 70% with current values for png images,
+    jpeg: 70, // % of compression for jpg, jpeg images
   },
-  paths: {
-    root: "./",
-    src: {
-        base: "./src",
-        css: "./src/css",
-        js: "./src/js",
-        img: "./src/img"
-    },
-    dist: {
-        base: "./dist",
-        css: "./dist/css",
-        js: "./dist/js",
-        img: "./dist/img"
-    },
-    build: {
-        base: "./build",
-        css: "./build/css",
-        js: "./build/js",
-        img: "./build/img"
-    }
-  }
-  ...
-}
+};
+
+// tailwind plugins
+const plugins = {
+  typography: true, // set to false to disable
+  forms: true,
+  lineClamp: true,
+  containerQueries: true,
+};
+...
 ```
+
+## License
+
+This project is open source and available under the [MIT License](https://github.com/lazymozek/gulp-with-tailwindcss/blob/main/LICENSE).

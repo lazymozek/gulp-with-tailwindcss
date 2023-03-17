@@ -7,9 +7,9 @@
     <title>Gulp with TailwindCSS v3</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
   </head>
-  <body class="bg-gray-200">
-    <header
-      class="bg-gradient-to-r from-red-400 via-red-500 to-pink-500 p-20 text-center"
+  <body class="bg-gray-50">
+    <div
+      class="bg-gradient-to-r from-red-400 to-pink-400 px-20 pt-20 pb-44 text-center"
     >
       <h1 class="hero-heading">
         <a href="./" class="text-inherit no-underline"
@@ -19,131 +19,86 @@
       <p class="mb-10 w-full text-center text-xl leading-5 text-white">
         Updated with Tailwind v3.2+, PostCSS v8.0+
       </p>
-      <p class="mb-10 w-full text-center text-base leading-5 text-white">
-        Tailwind Plugins included: (can be disabled in config.js)<br />
-        @tailwindcss/typography, @tailwindcss/forms, @tailwindcss/line-clamp,
-        @tailwindcss/container-queries
-      </p>
-      <div class="py-15 flex justify-center space-x-6">
+
+      <div class="space-x-3">
         <a
-          class="github-button"
-          href="https://github.com/manjumjn"
-          data-show-count="true"
-          aria-label="Follow @manjumjn on GitHub"
-          >Follow @manjumjn</a
+          class="rounded-full border border-white/40 bg-white/40 py-2 px-5 text-sm font-medium text-white hover:bg-white/50 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 active:bg-white/70 dark:border-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800"
+          href="https://gulp-with-tailwindcss.com/"
+          target="_blank"
+          >Documentation</a
         >
+
         <a
-          class="github-button"
-          href="https://github.com/manjumjn/gulp-with-tailwindcss"
-          data-icon="octicon-star"
-          data-show-count="true"
-          aria-label="Star manjumjn/gulp-with-tailwindcss on GitHub"
-          >Star</a
-        >
-        <a
-          class="github-button"
-          href="https://github.com/manjumjn/gulp-with-tailwindcss/fork"
-          data-icon="octicon-repo-forked"
-          data-show-count="true"
-          aria-label="Fork manjumjn/gulp-with-tailwindcss on GitHub"
-          >Fork</a
-        >
-        <a
-          class="github-button"
-          href="https://github.com/manjumjn/gulp-with-tailwindcss/archive/master.zip"
-          data-icon="octicon-cloud-download"
-          aria-label="Download manjumjn/gulp-with-tailwindcss on GitHub"
-          >Download</a
+          class="rounded-full border border-white/40 bg-white/40 py-2 px-5 text-sm font-medium text-white hover:bg-white/50 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 active:bg-white/70 dark:border-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800"
+          href="https://github.com/lazymozek/gulp-with-tailwindcss"
+          target="_blank"
+          >Github</a
         >
       </div>
-      <div class="mt-8 flex w-full items-center justify-center space-x-4">
-        <a
-          href="./partial-demo.html"
-          class="inline-flex items-center justify-center rounded border border-white bg-white/10 px-6 py-2.5 text-base font-light leading-none text-white hover:bg-white/20"
-          >Partials Demo</a
-        >
-      </div>
-    </header>
-    <div class="mx-auto max-w-2xl py-20">
-      <img
-        class="mb-10 rounded shadow transition-shadow duration-500 hover:shadow-lg"
-        src="img/cover.jpg"
-        alt="Gulp with TailwindCSS"
-      />
-      <div class="instructions">
-        <div class="mb-20 text-gray-700">
-          <h4 class="sub-title">Usage</h4>
-          <p>Use the following commands to get started.</p>
-          <code class="code translate-x-[20px] transform">
-            <em>// To Install Dev Depedencies</em><br />
-            npm install<br /><br />
+    </div>
+    <div
+      class="mx-auto -mt-32 mb-24 max-w-3xl rounded-lg bg-white p-10 shadow-lg"
+    >
+      <div
+        class="prose-headings:font-display prose prose-slate max-w-full py-0.5 dark:prose-invert prose-headings:scroll-mt-28 prose-headings:font-normal prose-a:font-medium prose-a:text-rose-400 prose-a:no-underline prose-a:underline-offset-2 hover:prose-a:underline prose-pre:rounded-xl prose-pre:bg-slate-900 prose-pre:shadow-lg prose-lead:text-slate-500 dark:text-slate-400 dark:[--tw-prose-background:theme(colors.slate.900)] dark:prose-pre:bg-slate-800/60 dark:prose-pre:shadow-none dark:prose-pre:ring-1 dark:prose-pre:ring-slate-300/10 dark:prose-hr:border-slate-800 dark:prose-lead:text-slate-400 lg:prose-headings:scroll-mt-[8.5rem] [&_.inline-tick]:rounded-md [&_.inline-tick]:bg-slate-300/50 [&_.inline-tick]:px-1.5 [&_.inline-tick]:font-mono [&_.inline-tick]:text-sm [&_.inline-tick]:font-light [&_.inline-tick]:before:hidden [&_.inline-tick]:after:hidden dark:[&_.inline-tick]:bg-slate-600/50"
+      >
+        <img
+          class="rounded shadow transition-shadow duration-500 hover:shadow-lg"
+          src="img/cover.jpg"
+          alt="Gulp with TailwindCSS"
+        />
 
-            <em>// To start development and server for live preview</em><br />
-            npm run dev<br /><br />
-
-            <em>// To generate minifed,optamized files for production server</em
-            ><br />
-            npm run prod
-          </code>
-        </div>
-
-        <div class="mb-10 text-gray-600">
-          <h4 class="sub-title">Options</h4>
-          <p>
-            To change the path of files and destination/build folder configure
-            at <b class="font-bold">config.js</b> file
-          </p>
-          <!-- Ignore the messay code :P only for demo -->
-          <!-- prettier-ignore -->
-          <code class="code pre transform translate-x-[-20px]">
-  config: { 
-    ... port: 9050 <em>//Update port here</em>
-  },
-  plugins: {
-    typograpy: true, <em>// set `false` to disable particular plugin</em>
-    forms: true,
-    lineClamp: true,
-    containerQueries: true,
-  },
-  paths: { 
-    root: "./", 
-    src: { 
-      base: "./src", 
-      css: "./src/css", 
-      js: "./src/js", 
-      img: "./src/img" 
-    }, 
-    dist: { 
-      base: "./dist", 
-      css: "./dist/css", 
-      js: "./dist/js", 
-      img: "./dist/img" 
-    }, 
-    build: { 
-      base: "./build", 
-      css: "./build/css", 
-      js: "./build/js", 
-      img: "./build/img"
-    } 
-  }
-</code>
-        </div>
-      </div>
-
-      <div class="social">
-        <p class="w-full text-center">Want to connect with me?</p>
-        <div class="flex justify-center space-x-6">
-          <a href="https://manjumjn.com">Website</a>
-          <a href="https://www.facebook.com/manjumjn">Facebook</a>
-          <a href="https://twitter.com/manju_mjn">Twitter</a>
-          <a href="mailto:manjumjng2@gmail.com">Email Me</a>
-        </div>
+        <h3>Features</h3>
+        <ul>
+          <li>
+            Easy configuration using
+            <span class="inline-tick">config.js</span>
+          </li>
+          <li>Live reload on file/assets changes using browser-sync</li>
+          <li>SCSS support with auto purge css</li>
+          <li>Minification of styles and scripts on production build</li>
+          <li>
+            Minification of images on production build using
+            <span class="inline-tick">imagemin</span>
+          </li>
+          <li>
+            Includes following tailwindcss plugins (can be disabled/enabled with
+            <span class="inline-tick">config.js</span>)
+          </li>
+          <ul>
+            <li>
+              <a
+                target="_blank"
+                href="https://github.com/tailwindlabs/tailwindcss-forms"
+                >@tailwindcss/forms</a
+              >
+            </li>
+            <li>
+              <a
+                target="_blank"
+                href="https://github.com/tailwindlabs/tailwindcss-line-clamp"
+                >@tailwindcss/line-clamp</a
+              >
+            </li>
+            <li>
+              <a
+                target="_blank"
+                href="https://tailwindcss.com/docs/typography-plugin"
+                >@tailwindcss/typography</a
+              >
+            </li>
+            <li>
+              <a
+                target="_blank"
+                href="https://github.com/tailwindlabs/tailwindcss-container-queries"
+                >@tailwindcss/container-queries</a
+              >
+            </li>
+          </ul>
+        </ul>
       </div>
     </div>
 
     <script src="./js/scripts.js"></script>
-
-    <!-- Demo Purpose -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>

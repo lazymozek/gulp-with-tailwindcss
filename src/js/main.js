@@ -1,1 +1,3 @@
-//main.js file
+window.addEventListener("DOMContentLoaded", () => {
+  console.log("Loaded Scripts");
+});
