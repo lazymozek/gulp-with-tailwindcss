@@ -4,12 +4,13 @@ Gulp with TailwindCSS v3 Starter Kit ( ~~Updated with [TailwindCSS JIT](https://
 
 ## Features
 
-- Easy configuration using config.js
-- Live reload on file/assets changes using browser-sync
+- Easy configuration using `config.js`
+- Live reload on file/assets changes using `browser-sync`
 - SCSS support with auto-purge css
 - Minification of styles and scripts on production build
-- Minification of images on production build using imagemin
-- Includes following tailwindcss plugins (can be disabled/enabled with config.js)
+- Minification of images on production build using `imagemin`
+- Includes following tailwindcss plugins (can be disabled/enabled with `config.js`)
+
   - [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms)
   - [@tailwindcss/line-clamp](https://github.com/tailwindlabs/tailwindcss-line-clamp)
   - [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)
