@@ -44,7 +44,7 @@ All dev files are present in `src` folder. The build version can be found in `bu
 
 All configurations are found in `config.js` file in the root directory. You can configure browser default port, enable/disable plugins by simply updating boolean values (Default is set to `true`) and many more.
 
-```sh
+```js
 const config = {
   tailwindjs: "./tailwind.config.js",
   port: 9050, // default port
