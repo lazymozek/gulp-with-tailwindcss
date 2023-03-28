@@ -3,7 +3,6 @@ const options = require("./config"); //options from config.js
 const allPlugins = {
   typography: require("@tailwindcss/typography"),
   forms: require("@tailwindcss/forms"),
-  lineClamp: require("@tailwindcss/line-clamp"),
   containerQueries: require("@tailwindcss/container-queries"),
 };
 
