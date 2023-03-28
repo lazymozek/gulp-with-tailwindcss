@@ -18,7 +18,6 @@ const config = {
 const plugins = {
   typography: true,
   forms: true,
-  lineClamp: true,
   containerQueries: true,
 };
 
