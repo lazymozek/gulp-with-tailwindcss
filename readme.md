@@ -12,7 +12,7 @@ Gulp with TailwindCSS v3 Starter Kit ( ~~Updated with [TailwindCSS JIT](https://
 - Includes following tailwindcss plugins (can be disabled/enabled with `config.js`)
 
   - [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms)
-  - [@tailwindcss/line-clamp](https://github.com/tailwindlabs/tailwindcss-line-clamp)
+  - ~~[@tailwindcss/line-clamp]~~(https://github.com/tailwindlabs/tailwindcss-line-clamp) - Added by default in Tailwind v3.3 release
   - [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)
   - [@tailwindcss/container-queries](https://github.com/tailwindlabs/tailwindcss-container-queries)
 
@@ -64,7 +64,6 @@ const config = {
 const plugins = {
   typography: true, // set to false to disable
   forms: true,
-  lineClamp: true,
   containerQueries: true,
 };
 ...
