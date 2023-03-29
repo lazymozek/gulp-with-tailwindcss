@@ -6,7 +6,7 @@ Gulp with TailwindCSS v3 Starter Kit ( ~~Updated with [TailwindCSS JIT](https://
 
 - Easy configuration using `config.js`
 - Live reload on file/assets changes using `browser-sync`
-- SCSS support with auto-purge css
+- SCSS support
 - Minification of styles and scripts on production build
 - Minification of images on production build using `imagemin`
 - Includes following tailwindcss plugins (can be disabled/enabled with `config.js`)
